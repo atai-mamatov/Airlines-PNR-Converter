@@ -1,14 +1,29 @@
 ﻿using Script.Data.Database.SqlServer;
 using Script.Data;
 using Microsoft.Data.SqlClient;
+using Script.View;
 
-using var db = new AppDbContext();
-db.AddDataFromFiles(@"View\aircompanies.txt");
+//using var db = new AppDbContext();
+//db.AddDataFromFiles(@"View\aircompanies.txt");
 
+string pnr = null;
+bool valid = false;
+string[] fields = null;
 
-
-string pnr = "1 TS 275 J 15OCT 4 LGWYVR HK1         1010 1200   332 E 0"; // Example PNR string
-string[] fields = pnr.Split(' '); // Split the PNR string into an array of fields using the space character as a delimiter
+while (!valid)
+{
+    try
+    {
+        pnr = ConsoleHelper.GetFlightCodeFromConsole("PNR");
+        Console.WriteLine($"Вы ввели: {pnr}");
+        fields = pnr.Split(' '); // Split the PNR string into an array of fields using the space character as a delimiter
+        valid = true;
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Строка не соответствует нужному формату. Пожалуйста, введите строку заново.");
+    }
+}
 
 string bookingNumber = fields[0]; // Extract the booking number
 string airlineCode = fields[1]; // Extract the airline code
@@ -25,26 +40,5 @@ string aircraftType = fields[11]; // Extract the aircraft type
 string mealCode = fields[12]; // Extract the meal code
 
 
-string connectionString = "Data Source=.;Initial Catalog=Script;Integrated Security=True;TrustServerCertificate=True;";
-using (SqlConnection connection = new SqlConnection(connectionString))
-{
-    connection.Open();
 
-    // Ввод кода IATA пользователем
-    Console.Write("Введите код IATA: ");
-    string iataCode = Console.ReadLine();
-
-    // Создание SQL-запроса с параметром для кода IATA
-    string sql = "SELECT Name FROM aircompanies WHERE [IATA] = @iataCode";
-    using (SqlCommand command = new SqlCommand(sql, connection))
-    {
-        // Добавление параметра для кода IATA
-        command.Parameters.AddWithValue("@iataCode", iataCode);
-
-        // Выполнение SQL-запроса и получение имени авиакомпании
-        string aircompanyName = (string)command.ExecuteScalar();
-
-        // Вывод имени авиакомпании на экран
-        Console.WriteLine("Авиакомпания: " + aircompanyName);
-    }
-}
+Console.WriteLine(fields);
