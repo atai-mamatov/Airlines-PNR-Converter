@@ -3,7 +3,7 @@
     public class Airport : BaseEntity
     {
         public string Name { get; set; }
-        public Country CountryName { get; set; }
-        public int IATA { get; set; }
+        public string CountryName { get; set; }
+        public string IATA { get; set; }
     }
 }

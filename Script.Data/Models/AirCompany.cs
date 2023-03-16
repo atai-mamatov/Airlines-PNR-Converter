@@ -1,8 +1,8 @@
 ﻿namespace Script.Data.Models
 {
-    public class Country : BaseEntity
+    public class AirCompany : BaseEntity
     {
         public string Name { get; set; }
-        public int IATA { get; set; }
+        public string IATA { get; set; }
     }
 }
