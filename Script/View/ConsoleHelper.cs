@@ -15,12 +15,13 @@ namespace Script.View
                 $"Please enter {fieldName}");
             string value = Console.ReadLine();
 
-            string pattern = @"^TS\s\d{3}\s[A-Z]\s\d{2}[A-Z]{3}\s\d\s[A-Z]{3}[A-Z]{3}\sHK\d\s+\d{4}\s+\d{4}\s+[A-Z]\s\d$";
+            //string pattern = @"^TS\s\d{3}\s[A-Z]\s\d{2}[A-Z]{3}\s\d\s[A-Z]{3}[A-Z]{3}\sHK\d\s+\d{4}\s+\d{4}\s+[A-Z]\s\d$";
+            ////TS 275 J 15OCT 4 LGWYVR HK1         1010 1200   332 E 0
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch(value, pattern))
-            {
-                throw new FormatException();
-            }
+            //if (!System.Text.RegularExpressions.Regex.IsMatch(value, pattern))
+            //{
+            //    throw new FormatException();
+            //}
 
             return value;
         }
