@@ -1,4 +1,9 @@
-﻿string pnr = null;
+﻿using Script.View;
+using System;
+
+
+
+string pnr = null;
 bool valid = false;
 string[] fields = null;
 
@@ -51,19 +56,28 @@ months.Add("DEC", "Декабрь");
 string departureMonthCode = departureDate.Substring(2, 3);
 string departureMonth = months[departureMonthCode];
 
-//string dayOfMonth = departureDate.Substring(0, 2);
-//Console.Write($"День месяца: {dayOfMonth},\n" +
-//    $"Месяц вылета: {departureMonth}");
-//Console.Write($"Код авиакомпании: {airlineCode}, ");
 
-//Console.Write($"Номер рейса: {flightNumber}, ");
-//Console.Write($"Дата вылета: {departureDate}, ");
-//Console.Write($"Аэропорт отправления: {origin}, ");
-//Console.Write($"Аэропорт прибытия: {destination}, ");
-//Console.Write($"Время вылета: {departureTime}, ");
-//Console.Write($"Время прибытия: {arrivalTime}, ");
-//Console.Write($"Код питания: {mealCode}, ");
-//Console.WriteLine();
+ConsoleHelper.PrintAirlineName(airlineCode);
+ConsoleHelper.FindCity(origin);
+ConsoleHelper.FindCity(destination);
+
+
+
+
+
+string dayOfMonth = departureDate.Substring(0, 2);
+Console.Write($"День месяца: {dayOfMonth},\n" +
+    $"Месяц вылета: {departureMonth}");
+Console.Write($"Код авиакомпании: {airlineCode}, ");
+
+Console.Write($"Номер рейса: {flightNumber}, ");
+Console.Write($"Дата вылета: {departureDate}, ");
+Console.Write($"Аэропорт отправления: {origin}, ");
+Console.Write($"Аэропорт прибытия: {destination}, ");
+Console.Write($"Время вылета: {departureTime}, ");
+Console.Write($"Время прибытия: {arrivalTime}, ");
+Console.Write($"Код питания: {mealCode}, ");
+Console.WriteLine();
 
 
 
